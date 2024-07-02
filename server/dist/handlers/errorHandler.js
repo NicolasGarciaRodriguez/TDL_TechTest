@@ -3,7 +3,7 @@ export const errorHandler = (error, reply) => {
         const errors = Object.values(error.errors).map(err => err.message);
         reply.status(400).send({ message: 'Validation error', errors, isError: true });
     }
-    else if (error.code === 11000) {
+    else if (error.code == '11000') {
         reply.status(400).send({ message: 'Email already in use' });
     }
     else if (error.name === 'CastError') {
