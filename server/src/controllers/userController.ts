@@ -2,7 +2,6 @@ import {UserModel} from "../models/userModel.js";
 import {errorHandler} from "../handlers/errorHandler.js"
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { FastifyRequest } from "fastify";
 import { IRegisterRequest } from "../models/request/IRegisterRequest.js";
 import { IRegisterReply } from "../models/reply/IRegisterReply.js";
 import { ILoginRequest } from "../models/request/ILoginRequest.js";

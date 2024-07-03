@@ -2,9 +2,16 @@ import Fastify from 'fastify';
 import { connectDB } from './database/database.js';
 import userRoutes from './routes/routes.js';
 import dotenv from 'dotenv';
+import FastifyCors from '@fastify/cors';
 dotenv.config();
 const fastify = Fastify({
     logger: false
+});
+fastify.register(FastifyCors, {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 });
 fastify.register(userRoutes, { prefix: 'api/users' });
 const port = process.env.PORT || 8000;

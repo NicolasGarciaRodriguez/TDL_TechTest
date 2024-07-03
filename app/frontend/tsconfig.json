@@ -1,0 +1,83 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "target": "es6",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/": [
+        "./src/"
+      ],
+      "@/config/": [
+        "../shared-library/src/config/"
+      ],
+      "@/components/": [
+        "../shared-library/src/components/"
+      ],
+      "@/hooks/": [
+        "../shared-library/src/hooks/"
+      ],
+      "@/repositories/": [
+        "../shared-library/src/repositories/"
+      ],
+      "@/services/": [
+        "../shared-library/src/services/"
+      ],
+      "@/utils/": [
+        "../shared-library/src/utils/"
+      ],
+      "@/styles/": [
+        "../shared-library/src/styles/"
+      ],
+      "@/assets/": [
+        "./src/assets/"
+      ],
+      "@/shared/": [
+        "./src/shared/"
+      ],
+      "@/frontendInterfaces/": [
+        "../shared-library/src/interfaces/"
+      ],
+      "@/interfaces/": [
+        "../server/src/shared/interfaces/"
+      ],
+      "@/enums/": [
+        "../server/src/shared/enums/"
+      ],
+      "@/dtos/": [
+        "../server/src/shared/dtos/"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "*/.ts",
+    "*/.tsx",
+    "*/.scss",
+    ".next/types/*/.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
