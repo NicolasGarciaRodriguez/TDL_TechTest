@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import './Register.styles.scss';
+import { registerService } from './Register.service';
 
 const RegisterComponent: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -64,21 +65,16 @@ const RegisterComponent: React.FC = () => {
     if (!isFormValid) return;
 
     try {
-      const response = await fetch('/api/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
+      const request = {
+        email: email,
+        password: password
+      }
+      const response = await registerService(request);
 
-      if (!response.ok) {
+      if (response.isError) {
         throw new Error('Registration failed');
       }
-
-      const data = await response.json();
       router.push('/login');
-      setMessage(data.message);
     } catch (error) {
       setMessage('Registration failed');
     }
