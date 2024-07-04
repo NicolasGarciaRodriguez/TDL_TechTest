@@ -3,119 +3,80 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import './Register.styles.scss';
-import { registerService } from './Register.service';
+import { RegisterService } from './Register.service';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { IRegisterRequest } from '../../interfaces/IRegisterRequest.interface';
+import Link from 'next/link';
+
+
+interface IRegisterFormInputs {
+  email: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  email: yup.string().email('invalid email').required('Email is required'),
+  password: yup.string()
+  .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,10}$/, 'Password must contain between 8 and 10 characters long and at least one letter or number')
+  .required('Password is required'),
+});
+
 
 const RegisterComponent: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-  const [emailError, setEmailError] = useState<string>('');
-  const [passwordError, setPasswordError] = useState<string>('');
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  const [touchedEmail, setTouchedEmail] = useState<boolean>(false);
-  const [touchedPassword, setTouchedPassword] = useState<boolean>(false);
+
   const router = useRouter();
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email)) {
-      setEmailError('');
-      return true;
-    } else {
-      setEmailError('Invalid email format');
-      return false;
-    }
-  };
+  const [error, setError] = useState<string>('');
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm<IRegisterFormInputs>({
+      mode: 'onChange',
+      resolver: yupResolver(schema),
+    });
 
-  const validatePassword = (password: string): boolean => {
-    if (password.length < 8 || password.length > 100) {
-      setPasswordError('Password must be between 8 and 100 characters long');
-      return false;
-    }
-
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,100}$/;
-    if (!passwordRegex.test(password)) {
-      setPasswordError('Password must contain at least one letter and one number');
-      return false;
-    }
-
-    setPasswordError('');
-    return true;
-  };
-
-  useEffect(() => {
-    const isEmailValid = validateEmail(email);
-    const isPasswordValid = validatePassword(password);
-
-    setIsFormValid(isEmailValid && isPasswordValid);
-  }, [email, password]);
-
-  const handleEmailBlur = () => {
-    setTouchedEmail(true);
-    validateEmail(email);
-  };
-
-  const handlePasswordBlur = () => {
-    setTouchedPassword(true);
-    validatePassword(password);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!isFormValid) return;
-
-    try {
-      const request = {
-        email: email,
-        password: password
+    const onSubmit = async (data: IRegisterFormInputs) => {
+      try {
+        const response = await RegisterService(mapFormDataToRequest(data));
+        if (!response.isError) {
+          router.push('/login');
+        }
+      } catch (error) {
+        setError(error.message);
+        console.error(error);
       }
-      const response = await registerService(request);
-
-      if (response.isError) {
-        throw new Error('Registration failed');
-      }
-      router.push('/login');
-    } catch (error) {
-      setMessage('Registration failed');
     }
-  };
+
+    const mapFormDataToRequest = (data: IRegisterFormInputs): IRegisterRequest => {
+      return {
+          email: data.email,
+          password: data.password
+        };
+    } 
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="field">
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (touchedEmail) validateEmail(e.target.value);
-          }}
-          onBlur={handleEmailBlur}
-          required
-        />
-        {touchedEmail && emailError && <p className="error">{emailError}</p>}
-      </div>
-      <div className="field">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            if (touchedPassword) validatePassword(e.target.value);
-          }}
-          onBlur={handlePasswordBlur}
-          required
-        />
-        {touchedPassword && passwordError && <p className="error">{passwordError}</p>}
-      </div>
-      <button type="submit" disabled={!isFormValid}>Register</button>
-      {message && <p className="message">{message}</p>}
-    </form>
-  );
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <div className="field">
+      <label htmlFor="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        {...register('email')}
+      />
+        {errors.email && <p>{errors.email.message}</p>}
+    </div>
+    <div className="field">
+      <label htmlFor="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        {...register('password')}
+      />
+      {errors.password && <p>{errors.password.message}</p>}
+    </div>
+    {error && <p className="error-message">{error}</p>}
+    <Link className='login-link' href="/login">Already registered? login here.</Link>
+    <button type="submit" disabled={!isValid}>Register</button>
+  </form>
+  )
 };
 
 export default RegisterComponent;

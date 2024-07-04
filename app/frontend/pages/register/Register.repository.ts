@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api/users/register';
 
-export const registerRepository = async (data: IRegisterRequest): Promise<IRegisterResponseDTO> => {
+export const RegisterRepository = async (data: IRegisterRequest): Promise<IRegisterResponseDTO> => {
   try {
     const response = await axios.post<IRegisterResponseDTO>(API_URL, data, {
       headers: {

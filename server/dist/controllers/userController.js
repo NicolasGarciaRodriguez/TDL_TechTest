@@ -20,12 +20,12 @@ export const login = async (req, reply) => {
     try {
         const user = await UserModel.findOne({ email });
         if (!user) {
-            reply.status(401).send({ message: 'Invalid email or password' });
+            reply.status(401).send({ message: 'Invalid email or password', isError: true });
             return;
         }
         const isMatch = await user.comparePasswords(password);
         if (!isMatch) {
-            reply.status(401).send({ message: 'Invalid email or password', isError: false });
+            reply.status(401).send({ message: 'Invalid email or password', isError: true });
             return;
         }
         const sessionToken = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
