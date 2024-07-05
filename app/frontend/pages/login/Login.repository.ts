@@ -1,12 +1,14 @@
 import axios from "axios";
 import { ILoginRequest } from "./../../interfaces/ILoginRequest.interface";
 import { ILoginResponseDTO } from "../../dtos/ILoginResponse.dto";
+import dotenv from 'dotenv';
 
-const API_URL = 'http://localhost:8000/api/users/login';
+dotenv.config();
+const API_URL = process.env.API_URL;
 
 export const LoginRepository = async (data: ILoginRequest): Promise<ILoginResponseDTO> => {
   try {
-    const response = await axios.post<ILoginResponseDTO>(API_URL, data, {
+    const response = await axios.post<ILoginResponseDTO>(`${API_URL}/api/users/login`, data, {
       headers: {
         'Content-Type': 'application/json',
       },

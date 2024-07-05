@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  nextjs:
+    build:
+      context: ./app/frontend
+      dockerfile: Dockerfile
+    container_name: nextjs_app
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=development
+      - API_URL=http://localhost:8000
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: node_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/UsersDB
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongo_data:/data/db
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local
