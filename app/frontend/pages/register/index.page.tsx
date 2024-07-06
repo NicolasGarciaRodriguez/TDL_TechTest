@@ -4,9 +4,7 @@ import RegisterComponent from './Register.component';
 
 const RegisterPage: React.FC = () => {
   return (
-    <main>
-      <RegisterComponent />
-    </main>
+    <RegisterComponent />
   );
 };
 
