@@ -4,7 +4,7 @@ import { ILoginResponseDTO } from "../../dtos/ILoginResponse.dto";
 import dotenv from 'dotenv';
 
 dotenv.config();
-const API_URL = process.env.API_URL;
+const API_URL = process.env.API_URL || "http://localhost:8000";
 
 export const LoginRepository = async (data: ILoginRequest): Promise<ILoginResponseDTO> => {
   try {
@@ -12,6 +12,7 @@ export const LoginRepository = async (data: ILoginRequest): Promise<ILoginRespon
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true
     });
 
     return response.data

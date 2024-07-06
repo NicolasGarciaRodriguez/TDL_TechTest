@@ -75,7 +75,8 @@
     "*/.tsx",
     "*/.scss",
     ".next/types/*/.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "middleware.page.ts"
   ],
   "exclude": [
     "node_modules"

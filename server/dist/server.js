@@ -3,6 +3,7 @@ import { connectDB } from './database/database.js';
 import userRoutes from './routes/routes.js';
 import dotenv from 'dotenv';
 import FastifyCors from '@fastify/cors';
+import fastifyCookie from '@fastify/cookie';
 dotenv.config();
 const fastify = Fastify({
     logger: false
@@ -14,6 +15,9 @@ fastify.register(FastifyCors, {
     credentials: true,
 });
 fastify.register(userRoutes, { prefix: 'api/users' });
+fastify.register(fastifyCookie, {
+    secret: process.env.COOKIE_SECRET,
+});
 const port = process.env.PORT || 8000;
 const uri = process.env.MONGO_URI || '';
 const startServer = async () => {

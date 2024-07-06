@@ -7,6 +7,7 @@ import { IRegisterReply } from "../models/reply/IRegisterReply.js";
 import { ILoginRequest } from "../models/request/ILoginRequest.js";
 import { ILoginReply } from "../models/reply/ILoginReply.js";
 import { IError } from "../models/IError.js";
+import { serialize } from "v8";
 
 dotenv.config();
 
@@ -38,8 +39,15 @@ export const login = async (req: ILoginRequest, reply: ILoginReply) => {
             reply.status(401).send({ message: 'Invalid email or password', isError: true });
             return;
         }
-        const sessionToken = jwt.sign({id: user._id, email: user.email}, JWT_SECRET, {expiresIn: '1h'})
-        reply.send({ message: 'Login successful', sessionToken, isError: false });
+        const sessionToken = jwt.sign({id: user._id, email: user.email}, JWT_SECRET, {expiresIn: '1h'});
+        reply.setCookie('sessionToken', sessionToken, {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: false,
+            path: '/',
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+        });
+        reply.send({ message: 'Login successful', isError: false });
     } catch (error: any) {
         errorHandler(error as IError, reply);
     }

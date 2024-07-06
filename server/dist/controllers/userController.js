@@ -29,7 +29,14 @@ export const login = async (req, reply) => {
             return;
         }
         const sessionToken = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-        reply.send({ message: 'Login successful', sessionToken, isError: false });
+        reply.setCookie('sessionToken', sessionToken, {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: false,
+            path: '/',
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+        });
+        reply.send({ message: 'Login successful', isError: false });
     }
     catch (error) {
         errorHandler(error, reply);

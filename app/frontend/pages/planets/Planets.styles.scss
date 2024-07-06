@@ -1,0 +1,76 @@
+/* styles/PlanetsComponent.module.scss */
+
+.content {
+  padding: 20px;
+  
+  @media (max-width: 1200px) {
+    margin-left: 0;
+  }
+  
+  @media (max-width: 992px) {
+    margin-left: 0; 
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+}
+
+.planets_title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00796b;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #80deea 0%, #00796b 100%);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 50%;
+  width: 100%;
+  transition: background 0.3s, color 0.3s;
+
+  &:hover {
+    background: linear-gradient(135deg, #00796b 0%, #80deea 100%);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1.5rem;
+  }
+}
+
+.planets_content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 576px) {
+    padding: 10px;
+    gap: 10px;
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #555;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
+}

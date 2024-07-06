@@ -34,7 +34,7 @@ const LoginComponent = () => {
         try {
             const response = await LoginService(mapFormDataToRequest(data));
             if (!response.isError) {
-              router.push('/home');
+              router.push('/planets');
             }
         } catch (error) {
           setError(error.message);
