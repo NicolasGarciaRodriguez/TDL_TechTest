@@ -5,18 +5,18 @@ import './VehicleCard.styles.scss';
 const VehicleCardComponent = ({apiData}) => {
   return (
     <>
-        {apiData.map((vehicle: IVehicle, index) => {
-        return(
-            <div key={index} className='vehicle_card'>
-                <h2>{vehicle.name}</h2>
-                <p>Cargo capacity: {vehicle.cargo_capacity}</p>
-                <p>Consumables: {vehicle.consumables}</p>
-                <p>Cost in credits: {vehicle.cost_in_credits}</p>
-                <p>Model: {vehicle.model}</p>
-                <p>Passengers: {vehicle.passengers}</p>
-            </div>
-        )
-    })}
+      {apiData.map((vehicle: IVehicle, index) => (
+          <div key={index} className='vehicle_card'>
+              <h2 className='vehicle_name'>{vehicle.name}</h2>
+              <div className='vehicle_info'>
+                <p><strong>Cargo capacity:</strong>{vehicle.cargo_capacity}</p>
+                <p><strong>Consumables:</strong>{vehicle.consumables}</p>
+                <p><strong>Cost in credits:</strong>{vehicle.cost_in_credits}</p>
+                <p><strong>Model:</strong>{vehicle.model}</p>
+                <p><strong>Passengers:</strong>{vehicle.passengers}</p>
+              </div>
+          </div>
+    ))}
     </>
   )
 }

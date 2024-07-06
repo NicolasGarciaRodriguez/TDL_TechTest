@@ -1,66 +1,82 @@
-/* styles/vehicleCardComponent.module.scss */
+// styles/vehicleCardComponent.module.scss
 
 .vehicle_card {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background-color 0.3s, box-shadow 0.3s;
-  
-    &:hover {
-      background-color: #e0f7fa;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-  
-    h2 {
+  background: radial-gradient(circle at center, #2c2c2c, #1a1a1a);
+  border: 1px solid #ffcc00;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  }
+
+  .vehicle_name {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 3px #000;
+
+    @media (max-width: 768px) {
       font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #00796b;
-  
-      @media (max-width: 768px) {
-        font-size: 1.25rem;
-      }
-  
-      @media (max-width: 576px) {
-        font-size: 1rem;
-      }
     }
-  
+
+    @media (max-width: 576px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  .vehicle_info {
     p {
       margin: 5px 0;
       font-size: 1rem;
-      color: #555;
-  
+      color: #ddd;
+
       @media (max-width: 768px) {
         font-size: 0.9rem;
       }
-  
+
       @media (max-width: 576px) {
         font-size: 0.8rem;
       }
     }
+
+    strong {
+      color: #ffcc00;
+    }
   }
-  
-  @media (prefers-color-scheme: dark) {
-    .vehicle_card {
-      background-color: #333;
-      color: #ddd;
-  
-      &:hover {
-        background-color: #444;
-        box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
-      }
-  
-      h2 {
-        color: #80deea;
-      }
-  
+}
+
+@media (prefers-color-scheme: dark) {
+  .vehicle_card {
+    background: radial-gradient(circle at center, #1a1a1a, #000000);
+    border: 1px solid #ffcc00;
+    color: #ddd;
+
+    &:hover {
+      background: radial-gradient(circle at center, #2a2a2a, #1a1a1a);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.7);
+    }
+
+    .vehicle_name {
+      color: #ffcc00;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .vehicle_info {
       p {
-        color: #ccc;
+        color: #ddd;
+      }
+
+      strong {
+        color: #ffcc00;
       }
     }
   }
-  
+}

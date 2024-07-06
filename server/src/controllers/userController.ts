@@ -8,6 +8,8 @@ import { ILoginRequest } from "../models/request/ILoginRequest.js";
 import { ILoginReply } from "../models/reply/ILoginReply.js";
 import { IError } from "../models/IError.js";
 import { serialize } from "v8";
+import { FastifyRequest } from "fastify/types/request.js";
+import { FastifyReply } from "fastify/types/reply.js";
 
 dotenv.config();
 
@@ -52,3 +54,18 @@ export const login = async (req: ILoginRequest, reply: ILoginReply) => {
         errorHandler(error as IError, reply);
     }
 }
+
+export const logout = async (req: FastifyRequest, reply: FastifyReply) => {
+    try {
+        reply.clearCookie('sessionToken', {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: false,
+            path: '/'
+        });
+
+        reply.send({ message: 'Logout successful', isError: false });
+    } catch (error: any) {
+        errorHandler(error as IError, reply);
+    }
+};

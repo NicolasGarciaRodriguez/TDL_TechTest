@@ -42,3 +42,17 @@ export const login = async (req, reply) => {
         errorHandler(error, reply);
     }
 };
+export const logout = async (req, reply) => {
+    try {
+        reply.clearCookie('sessionToken', {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: false,
+            path: '/'
+        });
+        reply.send({ message: 'Logout successful', isError: false });
+    }
+    catch (error) {
+        errorHandler(error, reply);
+    }
+};

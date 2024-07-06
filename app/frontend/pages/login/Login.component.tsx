@@ -51,6 +51,7 @@ const LoginComponent = () => {
   
     return (
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <div className='title'>Login</div>
         <div className="field">
           <label htmlFor="email">Email:</label>
           <input

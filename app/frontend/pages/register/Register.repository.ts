@@ -8,7 +8,6 @@ const API_URL = process.env.API_URL || "http://localhost:8000";
 
 export const RegisterRepository = async (data: IRegisterRequest): Promise<IRegisterResponseDTO> => {
   try {
-    console.log(API_URL);
     const response = await axios.post<IRegisterResponseDTO>(`${API_URL}/api/users/register`, data, {
       headers: {
         'Content-Type': 'application/json',

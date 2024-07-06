@@ -54,27 +54,28 @@ const RegisterComponent: React.FC = () => {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-    <div className="field">
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        {...register('email')}
-      />
-        {errors.email && <p>{errors.email.message}</p>}
-    </div>
-    <div className="field">
-      <label htmlFor="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        {...register('password')}
-      />
-      {errors.password && <p>{errors.password.message}</p>}
-    </div>
-    {error && <p className="error-message">{error}</p>}
-    <Link className='login-link' href="/login">Already registered? login here.</Link>
-    <button type="submit" disabled={!isValid}>Register</button>
+      <div className='title'>Register</div>
+      <div className="field">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          {...register('email')}
+        />
+          {errors.email && <p>{errors.email.message}</p>}
+      </div>
+      <div className="field">
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          {...register('password')}
+        />
+        {errors.password && <p>{errors.password.message}</p>}
+      </div>
+      {error && <p className="error-message">{error}</p>}
+      <Link className='login-link' href="/login">Already registered? login here.</Link>
+      <button type="submit" disabled={!isValid}>Register</button>
   </form>
   )
 };

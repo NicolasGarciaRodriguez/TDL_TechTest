@@ -5,17 +5,17 @@ import './SpeciesCard.styles.scss';
 const SpeciesCardComponent = ({apiData}) => {
   return (
     <>
-        {apiData.map((specie: ISpecie, index) => {
-        return(
-            <div key={index} className='specie_card'>
-                <h2>{specie.name}</h2>
-                <p>Language: {specie.language}</p>
-                <p>Avg Height: {specie.average_height}</p>
-                <p>Classification: {specie.classification}</p>
-                <p>Designation: {specie.designation}</p>
-            </div>
-        )
-    })}
+      {apiData.map((specie: ISpecie, index) => (
+          <div key={index} className='specie_card'>
+              <h2 className='specie_name'>{specie.name}</h2>
+              <div className='specie_info'>
+                <p><strong>Language:</strong> {specie.language}</p>
+                <p><strong>Avg Height:</strong> {specie.average_height}</p>
+                <p><strong>Classification:</strong> {specie.classification}</p>
+                <p><strong>Designation:</strong> {specie.designation}</p>
+              </div>
+          </div>
+        ))}
     </>
   )
 }

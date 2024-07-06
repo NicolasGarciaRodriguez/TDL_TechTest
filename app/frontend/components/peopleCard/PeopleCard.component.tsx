@@ -5,18 +5,18 @@ import './PeopleCard.styles.scss';
 const PeopleCardComponent = ({apiData}) => {
   return (
     <>
-        {apiData.map((people: IPeople, index) => {
-        return(
+        {apiData.map((people: IPeople, index) => (
             <div key={index} className='people_card'>
-                <h2>{people.name}</h2>
-                <p>Birth year: {people.birth_year}</p>
-                <p>Eye color: {people.eye_color}</p>
-                <p>Gender: {people.gender}</p>
-                <p>Height: {people.height}</p>
-                <p>Skin color: {people.skin_color}</p>
+                <h2 className='people_name'>{people.name}</h2>
+                <div className='people_info'>
+                  <p><strong>Birth year:</strong>{people.birth_year}</p>
+                  <p><strong>Eye color:</strong>{people.eye_color}</p>
+                  <p><strong>Gender:</strong>{people.gender}</p>
+                  <p><strong>Height:</strong>{people.height}</p>
+                  <p><strong>Skin color:</strong>{people.skin_color}</p>
+                </div>
             </div>
-        )
-    })}
+    ))}
     </>
   )
 }
