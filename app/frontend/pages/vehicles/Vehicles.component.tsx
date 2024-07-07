@@ -43,8 +43,10 @@ const VehiclesComponent = () => {
     <div>
       <h1 className='vehicles_title'>Vehicles</h1>
       <div className='vehicles_content'>
-        {loading && <p>Loading...</p>}
         {Vehicles && <VehicleCardComponent apiData={Vehicles} />}
+        {loading && (
+          <div className='loading-spinner'></div>
+        )}
       </div>
   </div>
   )
