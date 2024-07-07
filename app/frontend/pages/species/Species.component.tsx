@@ -9,16 +9,22 @@ const SpeciesComponent = () => {
     const [Species, setSpecies] = useState<ISpecie[]>([]);
     const [pageNum, setPageNum] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isNextPage, setIsNextPage] = useState<boolean>(true);
+
 
     const getSpecies = async (page: number) => {
-      if (page > 4) {
+      if (!isNextPage) {
         return;
       }
         setLoading(true)
         try {
             const response = await SpeciesService(page);
-            setSpecies(prevSpecies => [...prevSpecies, ...response]);
+            setSpecies(prevSpecies => [...prevSpecies, ...response.data]);
+            setIsNextPage(response.next);
         } catch (error) {
+          if (error.response.status === 404) {
+            setIsNextPage(false);
+          }
             console.error('Error fetching Species', error);
         }
         setLoading(false);

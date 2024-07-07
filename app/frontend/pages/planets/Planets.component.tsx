@@ -9,16 +9,21 @@ const PlanetsComponent = () => {
     const [planets, setPlanets] = useState<IPlanet[]>([]);
     const [pageNum, setPageNum] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isNextPage, setIsNextPage] = useState<boolean>(true);
 
     const getPlanets = async (page: number) => {
-      if (page > 6) {
+      if (!isNextPage) {
         return;
       }
         setLoading(true)
         try {
             const response = await PlanetsService(page);
-            setPlanets(prevPlanets => [...prevPlanets, ...response]);
+            setPlanets(prevPlanets => [...prevPlanets, ...response.data]);
+            setIsNextPage(response.next);
         } catch (error) {
+          if (error.response.status === 404) {
+            setIsNextPage(false);
+          }
             console.error('Error fetching planets', error);
         }
         setLoading(false);

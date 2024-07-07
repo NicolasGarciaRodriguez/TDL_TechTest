@@ -9,16 +9,21 @@ const VehiclesComponent = () => {
     const [Vehicles, setVehicles] = useState<IVehicle[]>([]);
     const [pageNum, setPageNum] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isNextPage, setIsNextPage] = useState<boolean>(true);
 
     const getVehicles = async (page: number) => {
-      if (page > 4) {
+      if (!isNextPage) {
         return;
       }
         setLoading(true)
         try {
             const response = await VehiclesService(page);
-            setVehicles(prevVehicles => [...prevVehicles, ...response]);
+            setVehicles(prevVehicles => [...prevVehicles, ...response.data]);
+            setIsNextPage(response.next);
         } catch (error) {
+          if (error.response.status === 404) {
+            setIsNextPage(false);
+          }
             console.error('Error fetching Vehicles', error);
         }
         setLoading(false);

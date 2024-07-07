@@ -9,16 +9,21 @@ const StarshipsComponent = () => {
     const [Starships, setStarships] = useState<IStarship[]>([]);
     const [pageNum, setPageNum] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isNextPage, setIsNextPage] = useState<boolean>(true);
 
     const getStarships = async (page: number) => {
-      if (page > 4) {
+      if (!isNextPage) {
         return;
       }
         setLoading(true)
         try {
             const response = await StarshipsService(page);
-            setStarships(prevStarships => [...prevStarships, ...response]);
+            setStarships(prevStarships => [...prevStarships, ...response.data]);
+            setIsNextPage(response.next);
         } catch (error) {
+          if (error.response.status === 404) {
+            setIsNextPage(false);
+          }
             console.error('Error fetching Starships', error);
         }
         setLoading(false);

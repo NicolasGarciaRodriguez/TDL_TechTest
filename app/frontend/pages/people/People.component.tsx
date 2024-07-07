@@ -9,16 +9,21 @@ const PeopleComponent = () => {
     const [People, setPeople] = useState<IPeople[]>([]);
     const [pageNum, setPageNum] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isNextPage, setIsNextPage] = useState<boolean>(true);
 
     const getPeople = async (page: number) => {
-      if (page > 9) {
+      if (!isNextPage) {
         return;
       }
         setLoading(true)
         try {
             const response = await PeopleService(page);
-            setPeople(prevPeople => [...prevPeople, ...response]);
+            setPeople(prevPeople => [...prevPeople, ...response.data]);
+            setIsNextPage(response.next);
         } catch (error) {
+          if (error.response.status === 404) {
+            setIsNextPage(false);
+          }
             console.error('Error fetching People', error);
         }
         setLoading(false);

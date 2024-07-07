@@ -9,3 +9,8 @@ export interface  IStarship {
 	passengers: string,
 	cargo_capacity: string,
 }
+
+export interface IStarshipsExtApiResponse {
+	data: IStarship[];
+	next: boolean;
+}

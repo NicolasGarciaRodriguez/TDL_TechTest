@@ -5,3 +5,8 @@ export interface  ISpecie {
 	average_height: string,
 	language: string,
 }
+
+export interface ISpeciesExtApiResponse {
+	data: ISpecie[];
+	next: boolean;
+}

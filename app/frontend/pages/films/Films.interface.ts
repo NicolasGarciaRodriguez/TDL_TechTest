@@ -4,3 +4,8 @@ export interface  IFilm {
 	producer: string,
 	release_date: string,
 }
+
+export interface IFilmsExtApiResponse {
+	data: IFilm[];
+	next: boolean;
+}

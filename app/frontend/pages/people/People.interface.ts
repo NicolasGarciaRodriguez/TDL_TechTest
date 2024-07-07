@@ -8,3 +8,8 @@ export interface  IPeople {
 	birth_year: string,
 	gender: string,
 }
+
+export interface IPeopleExtApiResponse {
+	data: IPeople[];
+	next: boolean;
+}

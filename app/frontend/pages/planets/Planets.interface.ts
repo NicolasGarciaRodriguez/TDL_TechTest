@@ -9,3 +9,8 @@ export interface  IPlanet {
 	surface_water: string,
 	population: string,
 }
+
+export interface IPlanetsExtApiResponse {
+	data: IPlanet[];
+	next: boolean;
+}

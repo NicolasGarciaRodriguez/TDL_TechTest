@@ -9,3 +9,8 @@ export interface  IVehicle {
 	cargo_capacity: string,
 	consumables: string,
 }
+
+export interface IVehiclesExtApiResponse {
+	data: IVehicle[];
+	next: boolean;
+}
