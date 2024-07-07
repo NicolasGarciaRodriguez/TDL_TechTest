@@ -45,15 +45,16 @@ const PlanetsComponent = () => {
       }, [loading]);
 
   return (
-    <div>
-      <h1 className='planets_title'>Planets</h1>
-      <div className='planets_content'>
+    <div className='planets'>
+      <h1 className='planets__title'>Planets</h1>
+      <div className='planets__content'>
         {planets && <PlanetCardComponent apiData={planets} />}
         {loading && (
-          <div className='loading-spinner'></div>
+          <div className='planets__loading-spinner'></div>
         )}
       </div>
     </div>
+
   )
 }
 

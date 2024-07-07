@@ -1,6 +1,6 @@
-// styles/specieCardComponent.module.scss
+/* styles/specieCardComponent.module.scss */
 
-.specie_card {
+.specie-card {
   background: radial-gradient(circle at center, #2c2c2c, #1a1a1a);
   border: 1px solid #ffcc00;
   border-radius: 12px;
@@ -17,7 +17,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
   }
 
-  .specie_name {
+  &__name {
     font-size: 1.8rem;
     margin-bottom: 15px;
     color: #ffcc00;
@@ -32,7 +32,7 @@
     }
   }
 
-  .specie_info {
+  &__info {
     p {
       margin: 5px 0;
       font-size: 1rem;
@@ -53,8 +53,9 @@
   }
 }
 
+/* Modo oscuro */
 @media (prefers-color-scheme: dark) {
-  .specie_card {
+  .specie-card {
     background: radial-gradient(circle at center, #1a1a1a, #000000);
     border: 1px solid #ffcc00;
     color: #ddd;
@@ -64,12 +65,12 @@
       box-shadow: 0 8px 16px rgba(255, 255, 255, 0.7);
     }
 
-    .specie_name {
+    &__name {
       color: #ffcc00;
       text-shadow: 2px 2px 4px #000;
     }
 
-    .specie_info {
+    &__info {
       p {
         color: #ddd;
       }

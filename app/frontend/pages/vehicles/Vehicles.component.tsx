@@ -45,15 +45,15 @@ const VehiclesComponent = () => {
       }, [loading]);
 
   return (
-    <div>
-      <h1 className='vehicles_title'>Vehicles</h1>
-      <div className='vehicles_content'>
-        {Vehicles && <VehicleCardComponent apiData={Vehicles} />}
-        {loading && (
-          <div className='loading-spinner'></div>
-        )}
+      <div>
+        <h1 className="vehicles__title">Vehicles</h1>
+        <div className="vehicles__content">
+          {Vehicles && <VehicleCardComponent apiData={Vehicles} />}
+          {loading && (
+            <div className="vehicles__loading-spinner"></div>
+          )}
+        </div>
       </div>
-  </div>
   )
 }
 

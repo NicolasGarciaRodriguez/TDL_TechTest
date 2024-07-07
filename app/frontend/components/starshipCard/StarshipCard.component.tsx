@@ -6,17 +6,17 @@ const StarshipCardComponent = ({apiData}) => {
   return (
     <>
       {apiData.map((starship: IStarship, index) => (
-          <div key={index} className='starship_card'>
-              <h2 className='starship_name'>{starship.name}</h2>
-              <div className='starship_info'>
-                <p><strong>Cargo capacity:</strong>{starship.cargo_capacity}</p>
-                <p><strong>Cost in credits:</strong>{starship.cost_in_credits}</p>
-                <p><strong>Crew:</strong>{starship.crew}</p>
-                <p><strong>Manufacturer:</strong>{starship.manufacturer}</p>
-                <p><strong>Passengers:</strong>{starship.passengers}</p>
-              </div>
+        <div key={index} className="starship-card">
+          <h2 className="starship-card__name">{starship.name}</h2>
+          <div className="starship-card__info">
+            <p><strong>Cargo capacity:</strong> {starship.cargo_capacity}</p>
+            <p><strong>Cost in credits:</strong> {starship.cost_in_credits}</p>
+            <p><strong>Crew:</strong> {starship.crew}</p>
+            <p><strong>Manufacturer:</strong> {starship.manufacturer}</p>
+            <p><strong>Passengers:</strong> {starship.passengers}</p>
           </div>
-    ))}
+        </div>
+      ))}
     </>
   )
 }

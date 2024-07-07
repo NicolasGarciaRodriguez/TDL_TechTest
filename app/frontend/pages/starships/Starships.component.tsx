@@ -45,15 +45,15 @@ const StarshipsComponent = () => {
       }, [loading]);
 
   return (
-    <div>
-      <h1 className='starships_title'>Starships</h1>
-      <div className='starships_content'>
-        {Starships && <StarshipCardComponent apiData={Starships} />}
-        {loading && (
-          <div className='loading-spinner'></div>
-        )}
+      <div>
+        <h1 className="starships__title">Starships</h1>
+        <div className="starships__content">
+          {Starships && <StarshipCardComponent apiData={Starships} />}
+          {loading && (
+            <div className="starships__loading-spinner"></div>
+          )}
+        </div>
       </div>
-  </div>
   )
 }
 

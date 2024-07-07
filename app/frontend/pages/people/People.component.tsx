@@ -46,14 +46,14 @@ const PeopleComponent = () => {
 
   return (
     <div>
-      <h1 className='people_title'>People</h1>
-      <div className='people_content'>
+      <h1 className='people__title'>People</h1>
+      <div className='people__content'>
         {People && <PeopleCardComponent apiData={People} />}
         {loading && (
-          <div className='loading-spinner'></div>
+          <div className='people__loading-spinner'></div>
         )}
       </div>
-  </div>
+    </div>
   )
 }
 

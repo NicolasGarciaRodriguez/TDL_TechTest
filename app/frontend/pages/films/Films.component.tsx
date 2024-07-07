@@ -45,15 +45,15 @@ const FilmsComponent = () => {
       }, [loading]);
 
   return (
-    <div>
-      <h1 className='films_title'>Films</h1>
-      <div className='films_content'>
-        {Films && <FilmCardComponent apiData={Films} />}
-        {loading && (
-          <div className='loading-spinner'></div>
-        )}
+      <div className='films'>
+        <h1 className='films__title'>Films</h1>
+        <div className='films__content'>
+          {Films && <FilmCardComponent apiData={Films} />}
+          {loading && (
+            <div className='films__loading-spinner'></div>
+          )}
+        </div>
       </div>
-  </div>
   )
 }
 

@@ -46,15 +46,15 @@ const SpeciesComponent = () => {
       }, [loading]);
 
   return (
-    <div>
-      <h1 className='species_title'>Species</h1>
-      <div className='species_content'>
-        {Species && <SpecieCardComponent apiData={Species} />}
-        {loading && (
-          <div className='loading-spinner'></div>
-        )}
+      <div>
+        <h1 className="species__title">Species</h1>
+        <div className="species__content">
+          {Species && <SpecieCardComponent apiData={Species} />}
+          {loading && (
+            <div className="species__loading-spinner"></div>
+          )}
+        </div>
       </div>
-  </div>
   )
 }
 
