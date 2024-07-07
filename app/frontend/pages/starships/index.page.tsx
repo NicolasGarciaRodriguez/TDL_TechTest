@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavbarComponent from '../../components/navbar/Navbar.component'
 import './Starships.styles.scss';
-import StarshipsComponent from './starships.component';
+import StarshipsComponent from './Starships.component';
 
 const StarshipsPage = () => {
 

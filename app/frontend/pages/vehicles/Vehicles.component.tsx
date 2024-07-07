@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { IVehicle } from './Vehicles.interface';
 import { VehiclesService } from './Vehicles.service';
-import VehicleCardComponent from '../../components/VehicleCard/VehicleCard.component';
+import VehicleCardComponent from '../../components/vehicleCard/VehicleCard.component';
 import './Vehicles.styles.scss';
 
 const VehiclesComponent = () => {
