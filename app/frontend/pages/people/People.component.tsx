@@ -3,6 +3,7 @@ import { IPeople } from './People.interface';
 import { PeopleService } from './People.service';
 import PeopleCardComponent from '../../components/peopleCard/PeopleCard.component';
 import './People.styles.scss';
+import EntityCardComponent from '../../components/entityCard/entityCard.component';
 
 const PeopleComponent = () => {
 
@@ -48,7 +49,7 @@ const PeopleComponent = () => {
     <div>
       <h1 className='people__title'>People</h1>
       <div className='people__content'>
-        {People && <PeopleCardComponent apiData={People} />}
+        {People && <EntityCardComponent apiData={People} entityIndex={1} />}
         {loading && (
           <div className='people__loading-spinner'></div>
         )}

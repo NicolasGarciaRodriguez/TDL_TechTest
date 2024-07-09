@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Starships.styles.scss';
 import { IStarship } from './Starships.interface';
 import { StarshipsService } from './Starships.service';
-import StarshipCardComponent from '../../components/starshipCard/StarshipCard.component';
+import EntityCardComponent from '../../components/entityCard/entityCard.component';
 
 const StarshipsComponent = () => {
 
@@ -48,7 +48,7 @@ const StarshipsComponent = () => {
       <div>
         <h1 className="starships__title">Starships</h1>
         <div className="starships__content">
-          {Starships && <StarshipCardComponent apiData={Starships} />}
+          {Starships && <EntityCardComponent apiData={Starships} entityIndex={4}/>}
           {loading && (
             <div className="starships__loading-spinner"></div>
           )}

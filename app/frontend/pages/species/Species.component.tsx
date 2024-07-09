@@ -3,6 +3,7 @@ import { ISpecie } from './Species.interface';
 import { SpeciesService } from './Species.service';
 import SpecieCardComponent from '../../components/speciesCard/SpeciesCard.component';
 import './Species.styles.scss';
+import EntityCardComponent from '../../components/entityCard/entityCard.component';
 
 const SpeciesComponent = () => {
 
@@ -49,7 +50,7 @@ const SpeciesComponent = () => {
       <div>
         <h1 className="species__title">Species</h1>
         <div className="species__content">
-          {Species && <SpecieCardComponent apiData={Species} />}
+          {Species && <EntityCardComponent apiData={Species} entityIndex={3} />}
           {loading && (
             <div className="species__loading-spinner"></div>
           )}

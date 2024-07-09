@@ -1,0 +1,83 @@
+/* styles/entityCardComponent.module.scss */
+
+.entity-card {
+    background: radial-gradient(circle at center, #2c2c2c, #1a1a1a);
+    border: 1px solid #ffcc00;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+  
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    }
+  
+    &__name {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #ffcc00;
+      text-shadow: 2px 2px 3px #000;
+  
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+  
+      @media (max-width: 576px) {
+        font-size: 1.2rem;
+      }
+    }
+  
+    &__info {
+      p {
+        margin: 5px 0;
+        font-size: 1rem;
+        color: #ddd;
+  
+        @media (max-width: 768px) {
+          font-size: 0.9rem;
+        }
+  
+        @media (max-width: 576px) {
+          font-size: 0.8rem;
+        }
+      }
+  
+      strong {
+        color: #ffcc00;
+      }
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .entity-card {
+      background: radial-gradient(circle at center, #1a1a1a, #000000);
+      border: 1px solid #ffcc00;
+      color: #ddd;
+  
+      &:hover {
+        background: radial-gradient(circle at center, #2a2a2a, #1a1a1a);
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.7);
+      }
+  
+      &__name {
+        color: #ffcc00;
+        text-shadow: 2px 2px 4px #000;
+      }
+  
+      &__info {
+        p {
+          color: #ddd;
+        }
+  
+        strong {
+          color: #ffcc00;
+        }
+      }
+    }
+  }
+  

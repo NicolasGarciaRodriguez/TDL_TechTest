@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { IPlanet } from './Planets.interface';
 import { PlanetsService } from './Planets.service';
-import PlanetCardComponent from '../../components/planetCard/PlanetCard.component';
 import './Planets.styles.scss';
+import EntityCardComponent from '../../components/entityCard/entityCard.component';
 
 const PlanetsComponent = () => {
 
@@ -48,7 +48,7 @@ const PlanetsComponent = () => {
     <div className='planets'>
       <h1 className='planets__title'>Planets</h1>
       <div className='planets__content'>
-        {planets && <PlanetCardComponent apiData={planets} />}
+        {planets && <EntityCardComponent apiData={planets} entityIndex={2} />}
         {loading && (
           <div className='planets__loading-spinner'></div>
         )}

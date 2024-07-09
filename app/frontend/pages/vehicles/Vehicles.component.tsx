@@ -3,6 +3,7 @@ import { IVehicle } from './Vehicles.interface';
 import { VehiclesService } from './Vehicles.service';
 import VehicleCardComponent from '../../components/vehicleCard/VehicleCard.component';
 import './Vehicles.styles.scss';
+import EntityCardComponent from '../../components/entityCard/entityCard.component';
 
 const VehiclesComponent = () => {
 
@@ -48,7 +49,7 @@ const VehiclesComponent = () => {
       <div>
         <h1 className="vehicles__title">Vehicles</h1>
         <div className="vehicles__content">
-          {Vehicles && <VehicleCardComponent apiData={Vehicles} />}
+          {Vehicles && <EntityCardComponent apiData={Vehicles} entityIndex={5} />}
           {loading && (
             <div className="vehicles__loading-spinner"></div>
           )}

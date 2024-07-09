@@ -3,6 +3,7 @@ import { IFilm } from './Films.interface';
 import { FilmsService } from './Films.service';
 import FilmCardComponent from '../../components/filmsCard/FilmsCard.component';
 import './Films.styles.scss';
+import EntityCardComponent from '../../components/entityCard/entityCard.component';
 
 const FilmsComponent = () => {
 
@@ -48,7 +49,7 @@ const FilmsComponent = () => {
       <div className='films'>
         <h1 className='films__title'>Films</h1>
         <div className='films__content'>
-          {Films && <FilmCardComponent apiData={Films} />}
+          {Films && <EntityCardComponent apiData={Films} entityIndex={0} />}
           {loading && (
             <div className='films__loading-spinner'></div>
           )}
